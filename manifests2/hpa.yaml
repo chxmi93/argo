@@ -7,7 +7,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: k8s-edu-goods-app  # Autoscaler가 적용될 배포 이름
+    name: k8s-edu-goods-deployment  # Autoscaler가 적용될 배포 이름
   minReplicas: 2
   maxReplicas: 3
   metrics:
