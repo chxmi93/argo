@@ -1,13 +1,13 @@
-apiVersion: autoscaling/v2
+apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: my-app-hpa
+  name: edu-user-hpa
   namespace: edu-user  # 배포가 있는 네임스페이스
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: edu-user  # Autoscaler가 적용될 배포 이름
+    name: k8s-edu-user-app  # Autoscaler가 적용될 배포 이름
   minReplicas: 2
   maxReplicas: 4
   metrics:
