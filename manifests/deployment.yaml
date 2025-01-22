@@ -16,12 +16,19 @@ spec:
     spec:
       containers:
         - name: k8s-edu-user-app
-          image: chxmi/k8s-edu:v0.0.6      # dockerhub image repository : repo/image명:Tag
+          image: chxmi/k8s-edu:v0.0.6          # dockerhub image repository : repo/image명:Tag
           imagePullPolicy: IfNotPresent        # k8s 클러스터에 다운로드 된 이미지 없으면 다운 or Always
           ports:
             - name: http
               containerPort: 8080              # demo.jar 실행 포트
               protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /                          # 상태를 확인할 경로
+              port: 8080                       # 애플리케이션 포트
+            initialDelaySeconds: 5             # 컨테이너가 시작한 후 첫 체크까지 대기 시간
+            periodSeconds: 10                  # 상태를 체크할 주기
+            failureThreshold: 3                # 실패가 연속적으로 발생했을 때 재시작 기준
           resources:                           # pod 사용 리소스 설정 블록
             requests:                          # 생성시 필요한 최소 리소스
               cpu: "1"
