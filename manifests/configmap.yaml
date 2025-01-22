@@ -6,3 +6,4 @@ metadata:
 data:
   # 환경 변수 형식으로 설정값 지정
   GOODS_API_URL: "http://k8s-edu-goods-service.edu-goods.svc.cluster.local:80/api/v1/goods/"
+  APP_RUN_TYPE: "local"
