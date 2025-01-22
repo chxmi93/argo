@@ -39,7 +39,7 @@ spec:
                   key: GOODS_API_URL
           livenessProbe:
             httpGet:
-              path: /   # 상태 체크할 경로
+              path: /api/v1/user/   # 상태 체크할 경로
               port: 8080       # 서비스 포트
             initialDelaySeconds: 10  # 처음 시작 후 기다리는 시간 (초)
             periodSeconds: 5         # 상태 체크 간격 (초)
