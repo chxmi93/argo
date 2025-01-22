@@ -37,5 +37,13 @@ spec:
                 configMapKeyRef:
                   name: edu-user-config
                   key: GOODS_API_URL
+          livenessProbe:
+            httpGet:
+              path: /   # 상태 체크할 경로
+              port: 8080       # 서비스 포트
+            initialDelaySeconds: 10  # 처음 시작 후 기다리는 시간 (초)
+            periodSeconds: 5         # 상태 체크 간격 (초)
+            failureThreshold: 3      # 실패한 횟수
+            successThreshold: 1      # 성공한 횟수
       imagePullSecrets:                        # dockerhub 이미지 pull 위한 secret
         - name: k8s-edu-dockerhub-secret
