@@ -32,8 +32,18 @@ spec:
           env:                                 # pod 내 환경 변수 설정
             - name: SPRING_PROFILES_ACTIVE     # spring profile 설정
               value: prod                      # 상용(prod) 환경
-          envFrom:
-            - configMapRef:
-                name: edu-user-config
+            - name: GOODS_API_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: edu-user-config
+                  key: GOODS_API_URL  # ConfigMap에서 가져올 키
+            - name: APP_RUN_TYPE
+              valueFrom:
+                configMapKeyRef:
+                  name: edu-user-config
+                  key: APP_RUN_TYPE  # ConfigMap에서 가져올 키
+          # envFrom:
+          #   - configMapRef:
+          #       name: edu-user-config
       imagePullSecrets:                        # dockerhub 이미지 pull 위한 secret
         - name: k8s-edu-dockerhub-secret
